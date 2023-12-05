@@ -1,5 +1,6 @@
 use std::collections::HashMap;
 use std::hash::Hash;
+
 use crate::common_libs::files::get_lines_from_file;
 
 pub fn solve(filename: &str) -> (i32, i128) {
