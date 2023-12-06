@@ -9,7 +9,8 @@ fn main() {
         ("1", false),
         ("2", false),
         ("3", false),
-        ("4", true)
+        ("4", false),
+        ("5", true)
     ]);
 
     if *map.get("1").unwrap() {
@@ -43,5 +44,12 @@ fn main() {
 
         println!("{}", day_4::solve_part_2("resources/day4/day4.test.txt"));
         println!("{}", day_4::solve_part_2("resources/day4/day4.prod.txt"));
+    }
+
+    if *map.get("5").unwrap() {
+        day_5::solve("resources/day5/day5.test.txt", false);
+        day_5::solve("resources/day5/day5.prod.txt", false);
+        day_5::solve_part_2("resources/day5/day5.test.txt", false);
+        day_5::solve_part_2("resources/day5/day5.prod.txt", false);
     }
 }
