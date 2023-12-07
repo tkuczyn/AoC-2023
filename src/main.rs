@@ -10,7 +10,7 @@ fn main() {
         ("2", false),
         ("3", false),
         ("4", false),
-        ("5", true)
+        ("5", false)
     ]);
 
     if *map.get("1").unwrap() {
@@ -52,4 +52,14 @@ fn main() {
         day_5::solve_part_2("resources/day5/day5.test.txt", false);
         day_5::solve_part_2("resources/day5/day5.prod.txt", false);
     }
+
+    assert_eq!(4, day_6::get_nums_wins(9, 7));
+    assert_eq!(8, day_6::get_nums_wins(40, 15));
+    assert_eq!(9, day_6::get_nums_wins(200, 30));
+
+    day_6::solve("resources/day6/day6.test.txt", false);
+    day_6::solve("resources/day6/day6.prod.txt", false);
+
+    println!("{}", day_6::get_nums_wins(940200, 71530));
+    println!("{}", day_6::get_nums_wins(390110311121360, 48989083));
 }
