@@ -1,8 +1,11 @@
 use std::collections::HashMap;
+
 use crate::days::*;
+use day_7::hand_type::HandType;
 
 pub mod common_libs;
 pub mod days;
+pub mod tests;
 
 fn main() {
     let map: HashMap<&str, bool> = HashMap::from([
@@ -10,7 +13,9 @@ fn main() {
         ("2", false),
         ("3", false),
         ("4", false),
-        ("5", false)
+        ("5", false),
+        ("6", false),
+        ("7", true)
     ]);
 
     if *map.get("1").unwrap() {
@@ -53,13 +58,23 @@ fn main() {
         day_5::solve_part_2("resources/day5/day5.prod.txt", false);
     }
 
-    assert_eq!(4, day_6::get_nums_wins(9, 7));
-    assert_eq!(8, day_6::get_nums_wins(40, 15));
-    assert_eq!(9, day_6::get_nums_wins(200, 30));
+    if *map.get("6").unwrap() {
+        assert_eq!(4, day_6::get_nums_wins(9, 7));
+        assert_eq!(8, day_6::get_nums_wins(40, 15));
+        assert_eq!(9, day_6::get_nums_wins(200, 30));
 
-    day_6::solve("resources/day6/day6.test.txt", false);
-    day_6::solve("resources/day6/day6.prod.txt", false);
+        day_6::solve("resources/day6/day6.test.txt", false);
+        day_6::solve("resources/day6/day6.prod.txt", false);
 
-    println!("{}", day_6::get_nums_wins(940200, 71530));
-    println!("{}", day_6::get_nums_wins(390110311121360, 48989083));
+
+        //part 2
+        println!("---- PART 2 ----");
+        println!("{}", day_6::get_nums_wins(940200, 71530));
+        println!("{}", day_6::get_nums_wins(390110311121360, 48989083));
+    }
+
+    if *map.get("7").unwrap() {
+        day_7::solve("resources/day7/day7.test.txt");
+        day_7::solve("resources/day7/day7.prod.txt");
+    }
 }
