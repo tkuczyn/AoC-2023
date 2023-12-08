@@ -74,7 +74,13 @@ fn main() {
     }
 
     if *map.get("7").unwrap() {
-        day_7::solve("resources/day7/day7.test.txt");
-        day_7::solve("resources/day7/day7.prod.txt");
+        day_7::solve("resources/day7/day7.test.txt", true);
+        day_7::solve("resources/day7/day7.prod.txt", true);
+
+        unsafe { day_7::card_types::J_VALUE = 1; }
+
+        day_7::solve("resources/day7/day7.test.txt", false);
+        day_7::solve("resources/day7/day7.prod.txt", false);
+
     }
 }

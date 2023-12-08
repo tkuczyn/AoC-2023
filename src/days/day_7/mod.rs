@@ -7,7 +7,7 @@ use crate::days::day_7::card_hand::CardHand;
 use crate::days::day_7::card_types::CardType;
 use crate::days::day_7::hand_type::HandType;
 
-pub(crate) fn solve(filename: &str) {
+pub(crate) fn solve(filename: &str, part_1: bool) {
     let mut cards: Vec<CardHand> = vec!();
 
     for line in get_lines_from_file(filename) {
@@ -20,13 +20,17 @@ pub(crate) fn solve(filename: &str) {
         );
         let points = str::parse::<i32>(parts.nth(0).unwrap()).unwrap();
         cards.push(CardHand {
-            cards: vec,
+            cards: vec.clone(),
+            strongest_hand: vec.clone(),
             hand_type: HandType::HIGH,
             points: points,
         })
     }
 
     for mut card in cards.iter_mut() {
+        if !part_1 {
+            card.get_strongest_hand();
+        }
         card.classify();
     }
     cards.sort();
@@ -36,6 +40,6 @@ pub(crate) fn solve(filename: &str) {
         points += (i as i32 + 1) * &cards[i].points;
     }
 
-    println!("{}", points);
+    println!("Points: {}", points);
 }
 

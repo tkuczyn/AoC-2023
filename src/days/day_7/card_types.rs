@@ -2,6 +2,8 @@ use std::cmp::Ordering;
 use crate::days::day_7::card_hand::CardHand;
 use crate::days::day_7::hand_type::HandType;
 
+pub static mut J_VALUE: u8 = 11;
+
 #[derive(Debug, Hash, Copy, Clone)]
 pub enum CardType {
     V2,
@@ -21,7 +23,7 @@ pub enum CardType {
 
 impl PartialEq<Self> for CardType {
     fn eq(&self, other: &Self) -> bool {
-        self.value() == other.value()
+        unsafe { self.value() == other.value() }
     }
 }
 
@@ -29,12 +31,18 @@ impl Eq for CardType{}
 
 impl PartialOrd<Self> for CardType {
     fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
-        Option::from(u8::cmp(&self.value(), &other.value()))
+        unsafe { Option::from(u8::cmp(&self.value(), &other.value())) }
+    }
+}
+
+impl Ord for CardType {
+    fn cmp(&self, other: &Self) -> Ordering {
+        unsafe { u8::cmp(&self.value(), &other.value()) }
     }
 }
 
 impl CardType {
-    fn value(&self) -> u8 {
+    unsafe fn value(&self) -> u8 {
         match self {
             CardType::V2 => 2,
             CardType::V3 => 3,
@@ -45,7 +53,7 @@ impl CardType {
             CardType::V8 => 8,
             CardType::V9 => 9,
             CardType::VT => 10,
-            CardType::VJ => 11,
+            CardType::VJ => J_VALUE,
             CardType::VQ => 12,
             CardType::VK => 13,
             CardType::VA => 14,
