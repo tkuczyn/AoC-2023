@@ -15,7 +15,8 @@ fn main() {
         ("4", false),
         ("5", false),
         ("6", false),
-        ("7", true)
+        ("7", false),
+        ("8", false)
     ]);
 
     if *map.get("1").unwrap() {
@@ -66,7 +67,6 @@ fn main() {
         day_6::solve("resources/day6/day6.test.txt", false);
         day_6::solve("resources/day6/day6.prod.txt", false);
 
-
         //part 2
         println!("---- PART 2 ----");
         println!("{}", day_6::get_nums_wins(940200, 71530));
@@ -81,6 +81,17 @@ fn main() {
 
         day_7::solve("resources/day7/day7.test.txt", false);
         day_7::solve("resources/day7/day7.prod.txt", false);
-
     }
+
+    if *map.get("8").unwrap() {
+        day_8::solve("resources/day8/day8.test.1.txt");
+        day_8::solve("resources/day8/day8.test.3.txt");
+        day_8::solve("resources/day8/day8.prod.txt");
+
+        day_8::solve_part_2("resources/day8/day8.test.2.txt", false);
+        day_8::solve_part_2("resources/day8/day8.prod.txt", false);
+    }
+
+    day_9::solve("resources/day9/day9.test.txt");
+    day_9::solve("resources/day9/day9.prod.txt");
 }
